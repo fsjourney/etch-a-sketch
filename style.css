@@ -1,0 +1,32 @@
+body {
+    font-family: "JetBrains Mono";
+    background-color: gray;
+}
+
+#container {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.pad {
+    width: 512px;
+    height: 512px;
+    background-color: white;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+}
+
+.grow {
+    flex: 1;
+}
+
+.col {
+    background-color: black;
+}
