@@ -1,9 +1,8 @@
 let painting = false;
 let lastElement;
+const pad = document.querySelector(".pad");
 
 function generatePad(size) {
-    const pad = document.querySelector(".pad");
-
     for (let row, i = size; i > 0; i--) {
         row = document.createElement("div");
         row.classList.add("row", "grow");
@@ -20,6 +19,17 @@ function generatePad(size) {
     }
 }
 
+function removePad() {
+    while (pad.childNodes.length) {
+        let row = pad.firstChild;
+        row.childNodes.forEach(element => {
+            element.removeEventListener("mouseenter", paint);
+            element.removeEventListener("mousedown", paint);
+        });
+        pad.removeChild(row);
+    }
+}
+
 function randomHexColor() {
     return "#" + Math.floor(Math.random()*16777215).toString(16);
 }
@@ -30,6 +40,12 @@ function rgb(r, g, b) {
 
 function paint(e) {
     if (painting || e.type === "mousedown") e.target.classList.add("col");
+}
+
+function inputPad() {
+    let size = window.prompt("Input grid size:", "ex: 60");
+    removePad();
+    generatePad(+size);
 }
 
 const switchPaint = () => painting = !painting;
