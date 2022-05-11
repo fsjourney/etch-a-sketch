@@ -43,7 +43,10 @@ function paint(e) {
 }
 
 function inputPad() {
-    let size = window.prompt("Input grid size:", "ex: 60");
+    let size;
+    while (isNaN(size) || size < 1) {
+        size = +window.prompt("Input grid size:", "ex: 60");
+    }
     removePad();
     generatePad(+size);
 }
